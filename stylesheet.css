@@ -1,0 +1,64 @@
+body {
+	width: 100%;
+	font-family: "Istok Web", sans-serif;
+	margin: 0px;
+	background-image: url('IMG_1434.jpg'); 
+	background-repeat:no-repeat;
+	background-size:cover;
+}
+h1 {
+	font-size: 46px;
+	color: #382B1E;
+	position: fixed;
+	top:0%;
+	padding-left: 30px;
+}
+h6{
+	font-size: 20px;
+	color: #382B1E;
+	position:fixed;
+	top: 5%;
+	padding-left: 30px;
+	font-family: "Courier", serif;
+}
+p {
+	clear: both;
+	padding: 0 7px 0 7px;
+	font-size: 12px;
+}
+ul {
+	list-style-type: none;
+	margin-left: auto;
+	margin-right: auto;
+	position: fixed;
+	bottom: 3%;
+	padding: 0px;
+	width: 100%;
+	display: div;
+	margin:0px;
+}
+li {
+	text-align: center;
+	display: table-cell;
+	vertical-align: middle;
+	width: 20em;
+	background-color: #948576;
+	opacity: 0.9;
+	height: 70px;
+}
+
+li a {
+	font-size: 22px;
+	font-weight:bold;
+	color: #FFFFFF;
+	text-decoration: none;
+}
+	a:link {color:#382B1E;}      /* unvisited link */
+	a:visited {color:#382B1E;}  /* visited link */
+	a:hover {color:#FFE680;}  /* mouse over link */
+	a:active {color:#FFE680;}  /* selected link */
+	
+#site-text {
+	margin-top: 30px;
+}
+
