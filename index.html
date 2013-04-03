@@ -1,24 +1,185 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <link href='http://fonts.googleapis.com/css?family=Istok+Web' rel='stylesheet' type='text/css'>
-        <link href='http://fonts.googleapis.com/css?family=Prata' rel='stylesheet' type='text/css'>
-        <link href='http://fonts.googleapis.com/css?family=Cutive+Mono' rel='stylesheet' type='text/css'>
-        <link rel="stylesheet" type="text/css" href="stylesheet.css">
-        <title>Makapen</title>
-    </head>
-    <body>
-    <h1>MAKAPEN</h1>
-    <h6>Small Business Solutions</h6>
-    <div id="nav-menu">
-    <ul>
-    	<li><a href="About.HTML">ABOUT</a></li>
-    	<li><a href="Services.html">SERVICES</a></li>
-    	<li><a href="Portfolio.HTML">PORTFOLIO</a></li>
-    	<li><a href="Contact.HTML">CONTACT</a></li>
-    </ul>
-    </div>
-    </body>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link href='http://fonts.googleapis.com/css?family=Istok+Web' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Prata' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Cutive+Mono' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" type="text/css" href="stylesheet.css">
+		<link href="BreeSerif-Regular.otf" rel='stylesheet' type='text/css'>
+		<link href="OpenSans-Regular.ttf" rel='stylesheet' type='text/css'>
+		<!-- jQuery library (served from Google) -->
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+		<!-- bxSlider Javascript file -->
+		<script src="./jquery.bxslider.min.js"></script>
+		<!-- bxSlider CSS file -->
+		<link href="./jquery.bxslider.css" rel="stylesheet" />
+		<title>makapen</title>
+	</head>
+	<body class="homepage">
+
+		<div class="nav-menu">
+			<div class="logo">
+				<a href="index.html"><img src="makapenpop2.png"/></a>
+			</div>
+			<ul>
+				<li>
+					<a href="#About">ABOUT</a>
+				</li>
+				<li>
+					<a href="#Services">SERVICES</a>
+				</li>
+				<li>
+					<a href="#Portfolio">PORTFOLIO</a>
+				</li>
+				<li>
+					<a href="#Contact">CONTACT</a>
+				</li>
+			</ul>
+		</div>
+		<div class="main-content">
+			<ul class="bxslider">
+				<li data-page="Home">
+					<div class="left-box">
+						<div class="content">
+							<ul>
+								<li>
+									Nice
+								</li>
+								<li>
+									Inexpensive
+								</li>
+								<li>
+									Simple
+								</li>
+							</ul>
+						</div>
+
+					</div>
+
+					<div class="right-box">
+						<div class="content">
+							<ul>
+								<br>
+								<li>
+									Business Services
+								</li>
+							</ul>
+						</div>
+
+					</div>
+				</li>
+				<li data-page="About">
+
+				</li>
+				<li data-page="Services">
+
+				</li>
+				<li data-page="Portfolio">
+
+				</li>
+				<li data-page="Contact">
+
+				</li>
+
+			</ul>
+
+		</div>
+		<footer>
+			<p class="footer">
+				<a>&copy; Copyright  by Ewelina Prockow. All rights reserved.</a>
+			</p>
+		</footer>
+	</body>
+	<script type="application/javascript">
+		$(document).ready(function() {
+			var pageNames = [];
+
+			$("ul.bxSlider > li").each(function() {
+				var page = $(this).attr("data-page");
+			});
+
+			var mainContentHeight = $(window).height() - 170;
+			$('.bxslider > li').height(mainContentHeight);
+			var bxSliderInstance = $('.bxslider').bxSlider({
+				pager : false,
+				infiniteLoop : false,
+				hideControlOnEnd : true,
+				onSlideBefore : function(slideElement) {
+					var slideElementName = $(slideElement).attr("data-page");
+					window.location.hash = slideElementName;
+
+				}
+			});
+			var goToPage = function(requestedPage) {
+
+				var slideElement = bxSliderInstance.find("li[data-page=" + requestedPage + "]");
+				if (slideElement.length > 0) {
+					var indexOfSlide = slideElement.index();
+					var slideElementName = slideElement.attr("data-page");
+					bxSliderInstance.goToSlide(indexOfSlide);
+
+					var navLinks = $(".nav-menu ul li > a");
+					navLinks.filter(".active").removeClass("active");
+					navLinks.filter("[href=#" + slideElementName + "]").addClass("active");
+				}
+			};
+
+			var parseHashRequest = function() {
+				var pageWithoutHash;
+
+				if (location.hash.length > 0) {
+					pageWithoutHash = location.hash.split("#")[1];
+
+				}
+
+				if (!pageWithoutHash || pageWithoutHash != "/") {
+					goToPage(pageWithoutHash);
+				} else {
+					goToPage("Home");
+				}
+			};
+
+			$(window).on('hashchange', function() {
+				parseHashRequest();
+			});
+			parseHashRequest();
+			
+			var portfolioPieces = {
+				"mothersDayMenu": "mothers_day.png",
+				"mothersDayFlyer": "mother's day flyers.png",
+				"businessCard": "gadfly business card 1.jpg",
+				"businessCardBack":"gadfly business card 12.jpg",
+				"pressRelease":"Swit_flier.png"
+			};
+
+			$(bxSliderInstance).find("li").each(function(slideElementIndex, slideElement) {
+				var slideElementName = $(slideElement).attr("data-page");
+				if (slideElementName != "Home") {
+
+					if (slideElementName == "Portfolio") {
+						//we need to listen to when this slide loads
+						//because we need to add more functionality to it
+						$(slideElement).load(slideElementName + ".html", function() {
+							$(".thumbnails a").each(function(thumbnailIndex, thumbnail) {
+								var portItemId = $(thumbnail).attr("data-portItemId");
+								$(thumbnail).click(function() {
+									var imageUrl = portfolioPieces[portItemId];
+									
+									$(".display-item img").attr("src", imageUrl);
+								});
+							});
+						});
+					} else {
+						//otherwise, just load the slide
+						//we don't care when it loads
+						$(slideElement).load(slideElementName + ".html");
+					}
+
+				}
+			});
+
+		});
+	</script>
 </html>
