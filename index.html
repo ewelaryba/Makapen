@@ -193,7 +193,12 @@
 								
 								formValues["description"] = $(textarea).val();
 								
-								console.log(formValues);
+								
+								$.post("/processForm.php", formValues).then(function(response) {
+									console.log(responses);
+								}, function(error) {
+									console.log(error);
+								});
 								return false;
 							});
 						});
