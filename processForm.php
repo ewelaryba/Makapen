@@ -15,6 +15,7 @@ if (preg_match($find, $first_name) || preg_match($find, $last_name) || preg_matc
 }
 
 $headers = "From: form@makapen.net\r\n";
+$headers .= "From: form@makapen.net\r\n";
 $headers .= "X-Mailer: PHP/".phpversion();
 
 $to = "info@makapen.net";
@@ -29,15 +30,17 @@ $companyName=$_POST['companyName'];
 $description = $_POST['description'];
 
 $message = "From: ".$first_name." ".$last_name."\r\n";
-$message = "At company: ".$companyName."\r\n";
+$message .= "At company: ".$companyName."\r\n";
 $message .= "Concerning: ".$project_subject."\r\n";
 $message .= "Project Details: ".$description."\r\n";
 $message .= "Reply To: ".$email."\r\n";
+// make sure each line doesn't exceed 70 characters
+$message = wordwrap($message, 150);
 
-mail($to, $subject, $message, $headers);
+$isMailSent = mail($to, $subject, $message, $headers);
 
 
 header('Content-Type: application/json');
-echo json_encode(array('firstName' => $first_name, 'lastName' => $last_name, 'email' => $email, 'subject' => $subject, 'companyName' => $companyName, 'description' => $description));
+echo json_encode(array('$isMailSent' => $isMailSent));
 ?>
 
