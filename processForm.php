@@ -1,5 +1,5 @@
 <?php
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if ($_SERVER['REQUEST_METHOD'] != 'POST') {
    echo "<h1>Error</h1>\n
       <p>Accessing this page directly is not allowed.</p>";
    exit;
