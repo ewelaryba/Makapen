@@ -22,7 +22,7 @@ p {
 }
 
 .success {
-	color: #2F2;
+	color: rgb(149.116,101);
 	font-size: 1.3em;
 }
 
@@ -195,6 +195,15 @@ form {
 }
 input {
 	width: 200px;
+	border-radius: 5px;
+	background-color: rgb(213,208,202);
+	box-shadow: none;
+	-webkit-box-shadow: none;
+	outline: 0;
+	border: 0;
+}
+textarea {
+		width: 200px;
 	border-radius: 5px;
 	background-color: rgb(213,208,202);
 	box-shadow: none;
