@@ -18,7 +18,7 @@ $headers = "From: form@makapen.net\r\n";
 $headers .= "From: form@makapen.net\r\n";
 $headers .= "X-Mailer: PHP/".phpversion();
 
-$to = "info@makapen.net";
+$to = "form@makapen.net";
 $subject = "Project Form Submission";
 
 $first_name=$_POST['firstName'];
