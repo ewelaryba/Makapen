@@ -195,7 +195,8 @@
 								
 								
 								$.post("/processForm.php", formValues).then(function(response) {
-									console.log(responses);
+									$("form.contact input[type=submit]").hide();
+									$("form span.success").removeClass("hidden");
 								}, function(error) {
 									console.log(error);
 								});

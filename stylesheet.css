@@ -16,6 +16,16 @@ p {
 	padding: 0 7px 0 7px;
 	
 }
+
+.hidden {
+	display: none
+}
+
+.success {
+	color: #2F2;
+	font-size: 1.3em;
+}
+
 .nav-menu {
 	width: 100%;
 	background-color: rgb(123, 201, 165);
