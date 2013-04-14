@@ -22,7 +22,7 @@
 
 		<div class="nav-menu">
 			<div class="logo">
-				<a href="index.html"><img src="makapenpop2.png"/></a>
+				<a href="#Home"><img src="makapenpop2.png"/></a>
 			</div>
 			<ul>
 				<li>
@@ -146,16 +146,16 @@
 				parseHashRequest();
 			});
 			parseHashRequest();
-			
+
 			var portfolioPieces = {
-				"mothersDayMenu": "mothers_day.png",
-				"mothersDayFlyer": "mother's day flyers.png",
-				"businessCard": "gadfly business card 1.jpg",
-				"businessCardBack":"gadfly business card 12.jpg",
-				"pressRelease":"Swit_flier.png"
+				"mothersDayMenu" : "mothers_day.png",
+				"mothersDayFlyer" : "mother's day flyers.png",
+				"businessCard" : "gadfly business card 1.jpg",
+				"businessCardBack" : "gadfly business card 12.jpg",
+				"pressRelease" : "Swit_flier.png"
 			};
 
-			$(bxSliderInstance).find("li").each(function(slideElementIndex, slideElement) {
+			$(bxSliderInstance).children("li").each(function(slideElementIndex, slideElement) {
 				var slideElementName = $(slideElement).attr("data-page");
 				if (slideElementName != "Home") {
 
@@ -167,11 +167,37 @@
 								var portItemId = $(thumbnail).attr("data-portItemId");
 								$(thumbnail).click(function() {
 									var imageUrl = portfolioPieces[portItemId];
-									
+
 									$(".display-item img").attr("src", imageUrl);
 								});
 							});
 						});
+					} else if (slideElementName == "Contact") {
+						//otherwise, just load the slide
+						//we don't care when it loads
+						$(slideElement).load(slideElementName + ".html", function() {
+							
+							
+							$("#submit").click(function() {
+								var formValues = {};
+								
+								$("form.contact input").each(function(index, input) {
+									var inputField = $(input).attr("name");
+									
+									if (inputField) {
+										formValues[inputField] = $(input).val();
+									}
+								});
+								
+								var textarea = $("form.contact").find("textarea");
+								
+								formValues["description"] = $(textarea).val();
+								
+								console.log(formValues);
+								return false;
+							});
+						});
+
 					} else {
 						//otherwise, just load the slide
 						//we don't care when it loads
